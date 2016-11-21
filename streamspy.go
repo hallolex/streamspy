@@ -9,6 +9,7 @@ import (
 	"html"
 	"io/ioutil"
 	"encoding/json"
+  "os"
 )
 
 type TwitchReply struct {
@@ -128,6 +129,7 @@ func ParseGame(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+
 	http.HandleFunc("/ParseGame/", ParseGame)
-    http.ListenAndServe(":8080", nil)
+    http.ListenAndServe(":" + os.Getenv("HTTP_PLATFORM_PORT"), nil)
 }
