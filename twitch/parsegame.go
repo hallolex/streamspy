@@ -9,6 +9,7 @@ import (
 	"net/url"
 
 	"github.com/hallolex/streamspy/containers"
+	"github.com/hallolex/streamspy/data"
 	"github.com/hallolex/streamspy/utils"
 )
 
@@ -17,7 +18,7 @@ func ParseGame(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Fprintf(w, "Parsing: "+gameName+"\n\n")
 
-	var gameURL string = "https://api.twitch.tv/kraken/streams?game=" + url.QueryEscape(gameName) + "&limit=10&client_id=njuhnnm201z2bniflxdypamzbv127xl"
+	var gameURL string = "https://api.twitch.tv/kraken/streams?game=" + url.QueryEscape(gameName) + "&limit=10&client_id=" + data.TWITCH_TOKEN
 
 	res, err := http.Get(gameURL)
 	utils.PanicError(err)
